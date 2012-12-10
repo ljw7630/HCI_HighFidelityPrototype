@@ -1,0 +1,61 @@
+<head>
+  <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="./bootstrap/css/docs.css" rel="stylesheet">
+  <link rel="stylesheet" href="./bootstrap/css/floating-window.css" media="screen" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  <script type="text/javascript" src="./bootstrap/js/ajax.js"></script>
+  <script type="text/javascript" src="./bootstrap/js/floating-window.js"></script>
+  
+	<style type="text/css">
+		 body{
+		  margin:0;
+		  padding:0 right-sidebar-<length> 0 left-sidebar-<length>;
+		 }
+		 div#left-sidebar{
+		  position:absolute;
+		  top:0;
+		  left:0;
+		  width:left-sidebar-<length>;
+		  height:100%;
+		 }
+		 div#right-sidebar{
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  width:right-sidebar-<length>;
+		  height:100%;
+		 }
+		 @media screen{
+		  body>div#left-sidebar{
+		   position:fixed;
+		  }
+		  body>div#right-sidebar{
+		   position:fixed;
+		  }
+		 }
+		 * html body{
+		  overflow:hidden;
+		 } 
+		 * html div#content{
+		  height:100%;
+		  overflow:auto;
+		 }
+	</style>
+	
+</head>
+
+<body>
+
+<ul id="list" style="list-style:none;">
+	<li class="nav-header">Available officers</li>
+	<li id="tom" class="nav-list" draggable="true" ondragstart="drag(event)"><a href="#">Tom</a></li>
+	 <li class="divider"></li>
+	<li id="jack" class="nav-list" draggable="true" ondragstart="drag(event)"><a href="#">Jack</a></li>
+	 <li class="divider"></li>
+	<li id="richard" class="nav-list" draggable="true" ondragstart="drag(event)"><a href="#">Richard</a></li>
+	 <li class="divider"></li>
+	<li id="will" class="nav-list" draggable="true" ondragstart="drag(event)"><a href="#">Will</a></li>
+</ul>
+
+</body>

@@ -1,0 +1,472 @@
+<head>
+  <title>
+    Welcome to Census application
+  </title>
+
+  <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="./bootstrap/css/docs.css" rel="stylesheet">
+  <link rel="stylesheet" href="./bootstrap/css/floating-window.css" media="screen" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  <!-- <script type="text/javascript" src="./bootstrap/js/ajax.js"></script> -->
+  <script type="text/javascript" src="./bootstrap/js/floating-window.js"></script>
+
+  <style type="text/css">
+		<!-- jinwu --> 
+			body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+			}
+			.sidebar-nav {
+			padding: 9px 0;
+			font-size: 15px;
+			}
+		<!-- jinwu --> 
+		<!-- lele -->
+			.main{
+			 clear:both;
+			 padding:0px;
+			 text-align:center;
+			 width:800px;
+			}
+			#tabs0 {
+			 height: 400px;
+			 width: 800px;
+			 border: 1px solid #cbcbcb;
+			 background-color:transparent;
+			}
+			.menu0{
+			 width: 800px;
+			}
+			.menu0 li{
+			 display:block;
+			 float: left;
+			 padding: 4px 0;
+			 margin:0px;
+			 width:298px;
+			 text-align: center;
+			 cursor:pointer;
+			 background: #FFFFff;
+			 border: solid 1px
+			}
+			.menu0 li.hover{
+			 background: transparent;
+			}
+			#main0 ul{
+			 display: none;
+			}
+			#main0 ul.block{
+			 display: block;
+			}
+			#main0 li{
+			 width:600px;
+			 list-style:none
+			}
+
+		<!-- lele -->
+    </style>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        // react on tab click event
+        $(document).ready(function() {
+            $(".nav-tabs li a").click(function() {
+                var li = $(this).parent("li");
+                var wch = this.getAttribute("href");
+                $(li).addClass("active"); //make current li active
+                $(li).siblings("li").removeClass("in active"); //make others inactive
+                $(".tab-content div").removeClass("in active"); //make all tabs inactive first
+                $(wch).addClass("in active"); //activate our tab;
+                return false; //don't change URL
+            });
+        });
+
+        $(document).ready(function()
+          {
+            $("#googlemap").hide();
+            $("#distributework").hide();
+            $("#officer").hide();
+			$("#dwconfirm1").hide();
+        });
+
+        $(document).ready(function()
+        {
+            $("#selectcity").change(function(){
+              if($(this).val() == "Dublin")
+			  {
+                $("#googlemap").show();  
+				$("#ireland").hide();
+				//$("#dwconfirm1").show();
+				}
+              else
+			  {
+                $("#googlemap").hide();
+				$("#dwconfirm1").hide();				
+				}
+            })
+        });
+
+        $(document).ready(function() {
+          $("#btndistribute").click( function(){
+			$("#ireland").hide();
+            $("#googlemap").hide();
+            $("#distributework").show();
+            $("#officer").show();
+			$("#dwconfirm1").show();
+			customFunctionCreateWindow('../../officer.html',200,300,900,200);
+          });
+        });
+		
+    </script>
+	
+	<script type="text/javascript">
+		var url1 = "./big_map.html";
+		var url2 = "./collection_status_map.html";
+		function reply_click(clicked_id)
+		{
+			alert(clicked_id);
+		}
+		
+		function hide_controls_from_frameA()
+		{
+			$("#dwconfirm1").hide();
+		}
+		
+		function drag(ev)
+		{
+			//ev.dataTransfer.setData("Text",ev.target.id);
+		}
+		
+		function drop(ev, item)
+		{
+			if( item == 'big_map')
+			{
+				change_image("distributework", "./split_map.html");
+			
+				$("#list li:contains('Tom')").remove();
+			}
+			else if( item == 'status_map' )
+			{
+				change_image("rearrange", "./collection_status_split_map.html")
+				
+				$("#list li:contains('Jack')").remove();
+			}
+		}
+		
+		function change_image(framename, str)
+		{
+			/*
+			var iframe = document.getElementById("distributework");
+			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			picture = "./images/split_map.png";
+			innerDoc.getElementById("image").src = "./images/split_map.png";
+			*/
+			url1 = str;
+			url2 = str;
+			document.getElementById(framename).src = str;
+		}
+		
+		function allowDrop(ev)
+		{
+			ev.preventDefault();
+		}	
+		
+		function swaptobigmap()
+		{
+			/*
+			var iframe = document.getElementById("distributework");
+			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			innerDoc.getElementById("image").src = picture1;
+			*/
+			document.getElementById("distributework").src = url1;
+		}
+		
+		function swaptostatusmap()
+		{
+			/*
+			var iframe = document.getElementById("rearrange");
+			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			innerDoc.getElementById("image").src = picture2;
+			*/
+			document.getElementById("rearrange").src = url2;
+		}
+		
+		//function swapto
+		
+		/* lele modify*/
+		function setTab(m,n){
+		 var tli=document.getElementById("menu"+m).getElementsByTagName("li");
+		 var mli=document.getElementById("main"+m).getElementsByTagName("ul");
+		 for(i=0;i<tli.length;i++){
+		  tli[i].className=i==n?"hover":"";
+		  mli[i].style.display=i==n?"block":"none";
+		 }
+		}
+		/* lele modify*/		
+	</script>
+
+</head>
+
+
+
+<body>
+  <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="#">Central Statistics Office Ireland</a>
+                  <div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                      Logged in as <a href="#" class="navbar-link">John</a>
+					  
+					  &nbsp; &nbsp;  <a href = "#" class="navbar-link">Logout</a>
+                    </p>
+                    <ul class="nav">
+                      <li class="active"><a href="#">Home</a></li>
+                      <li><a href="#about">About</a></li>
+                      <li><a href="#contact">Contact</a></li>
+                    </ul>
+                  </div><!--/.nav-collapse -->
+            </div>
+        </div>
+   </div>
+
+   
+   
+  <div class="container-fluid">
+    <div class="row-fluid" width="1200px;">
+      
+      <!-- side bar -->
+      <div class="sidebar">
+        <div class="well tabbable tabs-left">
+                <ul id="tabs" class="nav nav-tabs " data-tabs="tabs">
+                  <li class="nav-header">Options</li>
+                  <li class="active"><a href="#panelA" data-toggle="tab">Distribute Work<i class="icon-chevron-right"></i></a></li>
+                  <li><a href="#panelB" data-toggle="tab">View Collection Status<i class="icon-chevron-right"></i></a></li>
+				  <!--
+                  <li><a href="#panelC" data-toggle="tab">Check Assignment<i class="icon-chevron-right"></i></a></li>
+				  -->
+                  <li><a href="#panelD" data-toggle="tab">Upload<i class="icon-chevron-right"></i></a></li>
+                  <li><a href="#panelE" data-toggle="tab">Mailbox<i class="icon-chevron-right"></i></a></li>
+                  <li><a href="#panelF" data-toggle="tab">Arrangement<i class="icon-chevron-right"></i></a></li>
+                </ul>
+
+                <div id="my-tab-content" class="tab-content">
+
+                  <div class="span12">
+                      <div class="navbar-form">
+                            <div class="well control-group">
+
+                                <div class="controls" width="800px;">
+                                  <strong> City: &nbsp;&nbsp;</strong>
+
+                                      <select id="selectcity" data-toggle="dropdown"><span class="caret"></span>
+                                          <option><a href="#"></a></option>
+                                          <option value="Dublin"><a href="#">Dublin</a></option>
+                                          <option value="Cork"><a href="#">Cork</a></option>
+                                      </select>                                
+									&nbsp;&nbsp;
+                                  <input class="input-small" type="input" size="10px;" value="300" height="50">
+                                  <strong style="vertical-align:middle">&nbsp; hourseholds per officer</strong>
+								  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button id="btndistribute" class="btn"> Distribute Work </button>
+								</div>
+                            </div>
+                      </div>
+                  </div>
+
+
+                    <div class="tab-pane fade in active" id="panelA">
+                      <!-- <p>I'm in Section A.</p> -->
+						<div class="well control-group">
+							<iframe id="ireland" width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ie/maps?hl=en&amp;q=google+maps+ireland&amp;ie=UTF8&amp;hq=&amp;hnear=Ireland&amp;gl=ie&amp;t=m&amp;ll=53.41608,-8.239746&amp;spn=3.143287,7.03125&amp;z=7&amp;output=embed"></iframe>
+							<iframe id="googlemap" width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ie/?ie=UTF8&amp;ll=53.392747,-6.418419&amp;spn=0.127957,0.390015&amp;t=m&amp;z=12&amp;output=embed"></iframe>
+							<iframe id="distributework" width="640" height="480" src="./big_map.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+							<button id="dwconfirm1" onClick="reply_click(this.value)" value="Emails have sent successfully." class="btn">Confirm</button>
+						</div>
+                    </div>
+					
+                    <div class="tab-pane fade" id="panelB">
+                      <!-- <p>I'm in Section B.</p> -->
+						<iframe id="rearrange" width="640" height="480" src="./collection_status_map.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+						</iframe>					  
+					  
+						<button id="dwconfirm2" onClick="reply_click(this.value)" value="Emails have sent successfully.">Confirmation</button>
+                    </div>
+					
+					<!--
+                    <div class="tab-pane fade" id="panelC">
+                      <p>this is Section C.</p>
+					  <button id="dwconfirm2" onClick="reply_click(this.value)" value="Emails have sent successfully.">Confirmation</button>
+                    </div>
+					-->
+					
+                    <div class="tab-pane fade" id="panelD">
+                      <!-- <p>this is Section D.</p> -->
+					  
+					  <!-- lele modify -->
+							<div class="navbar-form well ">
+								
+								<div class="nav-collapse collapse nav-tabs">
+									<ul class="menu0" id="menu0">
+									  <li onClick="setTab(0,0)" class="hover">write regular report</li>
+									  <li onClick="setTab(0,1)">upload list</li>
+									</ul>
+								</div>
+								
+								<div class="main" id="main0">
+								  <ul class="block">
+									  <li >
+										<table width="800px;" border="1px" class="table">
+											
+											<tr >
+											<td width="800px;" style="vertical-align:middle">
+												<span style="font-family:Helvetica, Arial, sans-serif; font-size:16px">
+												Send To:&nbsp;&nbsp;
+												</span>
+												<input class="input-medium" type="text" size="700px" style="margin-top:0px;"/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="checkbox"  style="padding:0px; margin-top:0px"/>&nbsp;&nbsp;Enmergency
+												<button class="btn" style="padding:0px 10px;"/>Send </button>
+											</td>
+											</tr>
+											<tr>
+											<td width="800px;" style="vertical-align:middle">
+												<span style="font-family:Helvetica, Arial, sans-serif; font-size:16px">
+												Send From:&nbsp;&nbsp;
+												</span>
+												<input class="input-medium" type="text" size="700px" style="margin-top:0px;" disabled="disabled" value="john@gmail.com"/>
+												<br/>
+												<!-- <hr style="border: 1px dotted;width:600px"> -->
+											</td>
+											</tr>
+											<tr>
+											<td>
+												<textarea class="field span12" row="5">
+												</textarea>
+											</td>
+											</tr>
+										</table>
+									  </li>
+									  </ul>
+									  
+								  <ul><li>
+									<form  method="post" enctype ="multipart/form-data" > 
+<!--									<input name="UpLoadFile" type="file" value="browse..." /> -->
+									<input type="text" size="40px"/>
+									<input type=button value="Browse...." onClick="file.click()">
+									<input type=file name=file id=file onChange="fileshow.value=this.value" style="display:none"> 
+									<input type="submit" name="Button1" value="upload" id="Button1" />
+									</form>
+									</li></ul>
+								</div>
+							</div>
+							<!-- lele modify -->
+					  
+					  
+                    </div>
+                    <div class="tab-pane fade" id="panelE">
+                      <!-- <p>this is Section E.</p> -->
+					  
+					  <!-- lele modify -->
+							<h3>
+								Mailbox
+							</h3>
+							<div>
+								<input name="createmail" type="button" value="new"></input>
+								<input name="deletemail" type="button" value="delete"></input>
+								<input name="replymail" type="button" value="reply"></input>
+								<input name="checkdrafts" type="button" value="drafts"></input>
+								<br />
+								<hr style="border: 1px dotted;">
+								<div align="left">
+									<table width="700px">
+										<tr>
+											<td width="25px;">
+												<input type="checkbox" />
+											</td>
+											<td width="25px">
+												<img src="images/star-lit4.png"/>
+											</td>
+											<td width="550px">
+												<a href="#">Reply:Request for extral support</a>
+											</td>
+											<td width="100px">
+												04/10/2012
+											</td>
+										</tr>
+										<tr>
+											<td width="25px;">
+												<input type="checkbox" />
+											</td>
+											<td width="25px">
+												<img src="images/star4.png"/>
+											</td>
+											<td width="550px">
+												<a href="#">Received assignment</a>
+											</td>
+											<td width="100px">
+												01/10/2012
+											</td>
+										</tr>
+										<tr>
+											<td width="25px;">
+												<input type="checkbox" />
+											</td>
+											<td width="25px">
+												<img src="images/star4.png"/>
+											</td>
+											<td width="550px">
+												<a href="#">Checked historical data</a>
+											</td>
+											<td width="100px">
+												21/09/2012
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<!-- lele modify -->
+					  
+                    </div>
+                    <div class="tab-pane fade" id="panelF">
+						<!-- <p>this is Section F.</p> -->
+					  
+						<!-- zhenyang -->
+						<div align="left">
+
+						<iframe id="arrangework" width="640" height="480"
+									src="./arrangementForm_first.html"
+								  frameborder="0" scrolling="no"
+								  marginheight="0" marginwidth="0">
+						</iframe>
+
+						<iframe id="arrangeworklist" width="640" height="480"
+							src="./arrangementForm.html" frameborder="0" scrolling="no"
+							marginheight="0" marginwidth="0">
+							<!---
+							<ul class="pager page-header pull-left">
+							  <li><a href="#" onclick="call_parent_big_map()">&larr; Previous</a></li>
+							</ul>
+							---->
+						</iframe>
+
+
+						<!-- zhenyang -->
+                    </div>
+                </div>
+          </div> 
+      </div>
+    </div>
+  </div>
+    
+  <script type="text/javascript">
+      jQuery(document).ready(function ($) {
+          $('#tabs').tab();
+      });
+  </script>  
+</body>

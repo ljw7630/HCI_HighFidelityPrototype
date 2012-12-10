@@ -1,0 +1,35 @@
+<head>
+	<link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="./bootstrap/css/docs.css" rel="stylesheet">
+	<link rel="stylesheet" href="./bootstrap/css/floating-window.css" media="screen" type="text/css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+	<script type="text/javascript" src="./bootstrap/js/ajax.js"></script>
+	<script type="text/javascript" src="./bootstrap/js/floating-window.js"></script>
+	
+	<script text="text/javascript">
+		function callparent()
+		{
+			if( typeof(parent.hide_controls_from_frameA) == 'function')
+				parent.hide_controls_from_frameA();
+		}
+		
+		function callparentdrop(ev)
+		{
+			if( typeof(parent.drop) == 'function')
+				parent.drop();
+		}
+		
+		function callparentdragover(ev)
+		{
+			if( typeof(parent.dragover) == 'function')
+				parent.dragover();
+		}
+	</script>
+</head>
+
+<body>
+<a href="small_map.html" onclick="callparent()">
+    <img id="image" src="./images/split_map.png" border="0" onclick="callparent()" ondrop="parent.drop(event)" ondragover="parent.allowDrop(event)">
+</a>
+</body>
